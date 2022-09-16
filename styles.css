@@ -1,3 +1,7 @@
+*{
+    background-color: #1a202c;
+    color: white;
+}
 #cardsDisplay{
     display: flex;
     flex-wrap: wrap;
@@ -10,7 +14,8 @@
     padding: 10px;
     flex-basis: 20%;
     text-align: center;
-    border: solid 1px black;
+    border: solid 2px white;
+    border-radius: 16px;
 }
 .flavortext{
     font-size: 12px;
@@ -28,12 +33,15 @@
     text-align: center;
     margin: 25px;
 }
-.nav_button{
+.nav_button, #loginSubmit, #signupSubmit{
     border-radius: 8px;
     background-color: black;
+    border-color: #c9d1d9;
+    border-width: 2px;
     color: white;
+    padding: 5px;
 }
-.nav_button:hover{
+.nav_button:hover, #loginSubmit, #signupSubmit{
     cursor: pointer;
 }
 #login, #signup{
@@ -52,6 +60,7 @@
 }
 #about_site h2, #development h2, #banner_header{
     text-align: center;
+    color: #c9d1d9;
 }
 #filterBar{
     margin: 25px;
@@ -63,4 +72,18 @@
 }
 .filterName{
     vertical-align: middle;
+}
+#about_site h3, #development h3{
+    color: #818875;
+}
+#welcome_banner, #about_site{
+    margin-bottom: 100px;
+}
+select, input, option{
+    background-color: #c9d1d9;
+    color: black;
+    font-weight: bold;
+}
+#loginSubmit, #signupSubmit{
+    margin-top: 25px;
 }
