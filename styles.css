@@ -36,3 +36,17 @@
 .nav_button:hover{
     cursor: pointer;
 }
+#login, #signup{
+    width: 45%;
+}
+.flex{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+#loginHeader, #signupHeader{
+    text-align: center;
+}
+#login input, #signup input{
+    width: 100%;
+}
