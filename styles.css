@@ -24,3 +24,15 @@
     list-style: none;
     padding: 0px;
 }
+.nav{
+    text-align: center;
+    margin: 25px;
+}
+.nav_button{
+    border-radius: 8px;
+    background-color: black;
+    color: white;
+}
+.nav_button:hover{
+    cursor: pointer;
+}
