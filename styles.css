@@ -50,3 +50,17 @@
 #login input, #signup input{
     width: 100%;
 }
+#about_site h2, #development h2, #banner_header{
+    text-align: center;
+}
+#filterBar{
+    margin: 25px;
+    text-align: center;
+}
+#filterBar select{
+    height: 20px;
+    vertical-align: middle;
+}
+.filterName{
+    vertical-align: middle;
+}

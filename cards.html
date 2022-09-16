@@ -18,10 +18,11 @@
         <div id="filterBar">
             <form>
                 <select name="set" id="set" multiple>
+                    <option value="holder" disabled>Set(s)</option>
                     <option value="swsh1">Sword & Shield</option>
-                    <option>All Other Sets To Be Added Later</option>
                 </select>
                 <select name="types" id="types" multiple>
+                    <option value="holder" disabled>Type(s)</option>
                     <option value="Normal">Normal</option>
                     <option value="Fire">Fire</option>
                     <option value="Water">Water</option>
@@ -42,12 +43,13 @@
                     <option value="Fairy">Fairy</option>
                 </select>
                 <select name="supertype" id="supertype" multiple>
+                    <option value="holder" disabled>Super Type(s)</option>
                     <option value="Pokémon">Pokémon</option>
                     <option value="Energy">Energy</option>
                     <option value="Trainer">Trainer</option>
                 </select>
-                <label for="name">Name: </label>
-                <input type="text" name="name" id="name">
+                <label for="name" class="filterName">Name: </label>
+                <input type="text" name="name" id="name" class="filterName">
             </form>
         </div>
         <div id="cardsDisplay">
