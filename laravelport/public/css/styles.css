@@ -1,0 +1,121 @@
+*{
+    background-color: #1a202c;
+    color: white;
+}
+#cardsDisplay{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    align-content: space-around;
+    gap: 25px;
+}
+.card{
+    padding: 10px;
+    flex-basis: 20%;
+    text-align: center;
+    border: solid 2px white;
+    border-radius: 16px;
+}
+.collection, .deck{
+    flex-basis: 20%;
+    text-align: center;
+}
+.flavortext{
+    font-size: 12px;
+    color: gray;
+    font-style: italic;
+}
+.abilitiesHeader{
+    color: #9a0b12;
+}
+.abilities, .attacks{
+    list-style: none;
+    padding: 0px;
+}
+.nav{
+    text-align: center;
+    margin: 25px;
+}
+.nav_button, #loginSubmit, #signupSubmit{
+    border-radius: 8px;
+    background-color: black;
+    border-color: #c9d1d9;
+    border-width: 2px;
+    color: white;
+    padding: 5px;
+}
+.nav_button:hover, #loginSubmit, #signupSubmit, .collectionButton, .deckButton{
+    cursor: pointer;
+}
+#login, #signup{
+    width: 45%;
+}
+.flex, #collectionsdisplay, #decksdisplay{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+#loginHeader, #signupHeader{
+    text-align: center;
+}
+#login input, #signup input{
+    width: 100%;
+}
+#about_site h2, #development h2, #banner_header{
+    text-align: center;
+    color: #c9d1d9;
+}
+#filterBar{
+    margin: 25px;
+    text-align: center;
+}
+#filterBar select{
+    height: 20px;
+    vertical-align: middle;
+}
+.filterName{
+    vertical-align: middle;
+}
+#about_site h3, #development h3{
+    color: #818875;
+}
+#welcome_banner, #about_site{
+    margin-bottom: 100px;
+}
+select, input, option{
+    background-color: #c9d1d9;
+    color: black;
+    font-weight: bold;
+}
+#loginSubmit, #signupSubmit{
+    margin-top: 25px;
+}
+.footer, .footer p{  
+    background-color: #161b22;
+}
+.footer{
+    width: 100%;
+    margin: 0;
+    margin-top: 50px;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+body{
+    margin: 0;
+}
+html, body{
+    height: 100%;
+}
+div{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.cardPreview{
+    width: 60px;
+    height: auto;
+}
+.collectionButton, .deckButton{
+    padding: 20px;
+}
