@@ -2,7 +2,7 @@
 # example code for getting a set
 use Pokemon\Pokemon;
 Pokemon::Options(['verify' => true]);
-Pokemon::ApiKey('9da5e65f-c186-407f-aa95-d6833e3b9c1c');
+Pokemon::ApiKey(env("POKEMON_API_KEY"));
 $set = Pokemon::Set()->find('base1');
 ?>
 
