@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('collectionrelationships', function (Blueprint $table) {
-            $table->id();
-            $table->integer("collection_id");
-            $table->string("card_id");
+        Schema::create('cards', function (Blueprint $table) {
+            $table->string('id');
+            $table->string("name");
+            $table->string("image_url");
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collectionrelationships');
+        Schema::dropIfExists('cards');
     }
 };

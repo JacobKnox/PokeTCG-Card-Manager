@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('deckrelationships', function (Blueprint $table) {
             $table->id();
             $table->integer("deck_id");
-            $table->integer("user_id");
             $table->string("card_id");
         });
     }

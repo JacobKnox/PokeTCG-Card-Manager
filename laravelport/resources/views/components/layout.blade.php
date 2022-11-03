@@ -10,7 +10,7 @@
     <body>
         <div class="nav">
             <a href="/" class="nav_link"><button class="nav_button">Home</button></a>
-            <a href="/cards" class="nav_link"><button class="nav_button">Cards</button></a>
+            <a href="/cards/pagesize=50&pagenum=1" class="nav_link"><button class="nav_button">Cards</button></a>
             <a href="/collections" class="nav_link"><button class="nav_button">Collections</button></a>
             <a href="/decks" class="nav_link"><button class="nav_button">Decks</button></a>
             <a href="/registerlogin" class="nav_link"><button class="nav_button">Sign Up / Login</button></a>

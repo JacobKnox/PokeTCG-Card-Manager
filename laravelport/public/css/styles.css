@@ -5,9 +5,9 @@
 #cardsDisplay{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: stretch;
-    align-content: space-around;
+    align-content: center;
     gap: 25px;
 }
 .card{
@@ -16,6 +16,7 @@
     text-align: center;
     border: solid 2px white;
     border-radius: 16px;
+    margin: 0;
 }
 .collection, .deck{
     flex-basis: 20%;

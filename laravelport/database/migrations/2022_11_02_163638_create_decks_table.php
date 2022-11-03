@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('decks', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->integer("user_id");
             $table->integer("num_cards");
             $table->string("description");
         });

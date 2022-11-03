@@ -4,6 +4,8 @@ use Pokemon\Pokemon;
 Pokemon::Options(['verify' => true]);
 Pokemon::ApiKey(env("POKEMON_API_KEY"));
 $set = Pokemon::Set()->find('base1');
+
+$cards = Pokemon::Card()->page($num)->pageSize($size)->all();
 ?>
 
 <x-layout>
@@ -45,8 +47,14 @@ $set = Pokemon::Set()->find('base1');
         </form>
     </div>
     <div id="cardsDisplay">
-        <x-card></x-card>
-        <x-card></x-card>
-        <x-card></x-card>
+        @foreach($cards as $card)
+        <x-card :card='$card'></x-card>
+        @endforeach
+        @if($num > 1)
+        <a href="/cards/pagesize={{ $size }}&pagenum={{ $num - 1 }}"><button>Back</button></a>
+        @endif
+        @if($num < 15314/$size)
+        <a href="/cards/pagesize={{ $size }}&pagenum={{ $num + 1 }}"><button>Forward</button></a>
+        @endif
     </div>
 </x-layout>

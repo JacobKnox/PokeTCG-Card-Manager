@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Pokemon\Models\Card;
+use Pokemon\Pokemon;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +19,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/cards', function(){
-    return view('cards');
-});
-
 Route::get('/collections', function(){
     return view('collections');
 });
@@ -31,4 +29,13 @@ Route::get('/decks', function(){
 
 Route::get('/registerlogin', function(){
     return view('registerlogin');
+});
+
+Route::get('/card/{id}', function($id){
+    $card = Pokemon::Card()->find($id);
+    return view('card', ['card' => $card]);
+});
+
+Route::get('/cards/pagesize={size}&pagenum={num}', function($size, $num){
+    return view('cards', ['size' => $size, 'num' => $num]);
 });
