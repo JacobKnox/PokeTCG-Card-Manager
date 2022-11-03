@@ -1,12 +1,16 @@
 <div class="deck">
     <a href="/decks" class="deckLink">
         <button class="deckButton">
-            <img src="https://images.pokemontcg.io/swsh4/25.png" alt="Charizard" class="cardPreview">
-            <img src="https://images.pokemontcg.io/swsh4/25.png" alt="Charizard" class="cardPreview">
-            <img src="https://images.pokemontcg.io/swsh4/25.png" alt="Charizard" class="cardPreview">
-            <h2 class="deckName">My Deck</h2>
-            <p>60 cards</p>
-            <p class="deckDescription">This is a deck of all of my cards.</p>
+            <?php
+            $cards = $deck->cards;
+            dd($cards);
+            ?>
+            @for(int $i = 0; $i < 3; $i++)
+            <img src="{{ $cards[$i]->getImages()->getSmall() }}" alt="{{ $cards[$i]->name }}" class="cardPreview">
+            @endfor
+            <h2 class="deckName">{{ $deck->name }}</h2>
+            <p>{{ $deck->num_cards }} cards</p>
+            <p class="deckDescription">{{ $deck->description }}</p>
         </button>
     </a>
 </div>

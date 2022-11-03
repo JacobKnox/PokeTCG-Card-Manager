@@ -1,12 +1,16 @@
 <div class="collection">
-    <a href="collections.html" class="collectionLink">
+    <a href="/collections" class="collectionLink">
         <button class="collectionButton">
-            <img src="https://images.pokemontcg.io/swsh4/25.png" alt="Charizard" class="cardPreview">
-            <img src="https://images.pokemontcg.io/swsh4/25.png" alt="Charizard" class="cardPreview">
-            <img src="https://images.pokemontcg.io/swsh4/25.png" alt="Charizard" class="cardPreview">
-            <h2 class="collectionName">My Collection</h2>
-            <p>2000 cards</p>
-            <p class="collectionDescription">This is a collection of all of my cards.</p>
+            <?php
+            $cards = $collection->cards;
+            dd($cards);
+            ?>
+            @for(int $i = 0; $i < 3; $i++)
+            <img src="{{ $cards[$i]->getImages()->getSmall() }}" alt="{{ $cards[$i]->name }}" class="cardPreview">
+            @endfor
+            <h2 class="collectionName">{{ $collection->name }}</h2>
+            <p>{{ $collection->num_cards }} cards</p>
+            <p class="collectionDescription">{{ $collection->description }}</p>
         </button>
     </a>
 </div>
