@@ -97,8 +97,12 @@ select, input, option{
 }
 .footer{
     width: 100%;
-    margin: 0;
     margin-top: 50px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    bottom: 0;
+    position: fixed;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;

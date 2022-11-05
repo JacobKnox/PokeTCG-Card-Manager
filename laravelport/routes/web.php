@@ -37,5 +37,5 @@ Route::get('/card/{id}', function($id){
 });
 
 Route::get('/cards/pagesize={size}&pagenum={num}', function($size, $num){
-    return view('cards', ['size' => $size, 'num' => $num]);
+    return view('cards', ['size' => intval($size), 'num' => intval($num)]);
 });
