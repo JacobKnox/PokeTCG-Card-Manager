@@ -4,9 +4,7 @@
     </div>
     <div id="about_site">
         <h2>About the Site</h2>
-        <h3>What is PokéTCG Card Manager?</h3>
-        <p>This website is meant for enthusiasts of the Pokémon Trading Card Game (TCG) to view information about cards, create and manage their collection(s), create and manage decks, and a few other helpful features.</p>
-        <p>TEMP TEXT: Try to be more descriptive about the site?</p>
+        <p>PokéTCG Card Manager is a website designed with the average Pokémon Trading Card Game (TCG) enthustiast and collector in mind. It provides searchable, up-to-date information about cards and sets provided by the <a href="https://pokemontcg.io/">Pokémon TCG API</a>, the ability to create and manage collections and decks, and other helpful to be determined features.</p>
         <h3>How do I use the site?</h3>
         <p>TEMP TEXT: Insert brief information about each feature (section will be updated and flushed out upon feature development), how to create and manage an account, etc. Link to a dedicated FAQ page??</p>
     </div>

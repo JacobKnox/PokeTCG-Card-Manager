@@ -34,9 +34,11 @@
     list-style: none;
     padding: 0px;
 }
-.nav{
+nav{
     text-align: center;
     margin: 25px;
+    margin-top: 0px;
+    padding-top: 25px;
 }
 .nav_button, #loginSubmit, #signupSubmit{
     border-radius: 8px;
@@ -92,26 +94,22 @@ select, input, option{
 #loginSubmit, #signupSubmit{
     margin-top: 25px;
 }
-.footer, .footer p{  
+footer, footer p{  
     background-color: #161b22;
 }
-.footer{
+footer{
     width: 100%;
+    margin: 0px;
     margin-top: 50px;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    bottom: 0;
-    position: fixed;
+    margin-bottom: 0;
+    bottom: 0px;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
 }
-body{
-    margin: 0;
-}
 html, body{
     height: 100%;
+    margin: 0;
 }
 div{
     margin-left: 20px;
