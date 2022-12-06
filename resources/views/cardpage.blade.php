@@ -6,5 +6,4 @@
     </select>
     <p>{{ $card->getName() }}</p>
     <a href="/set/{{$card->getSet()->getId()}}">{{ $card->getSet()->getName() }}</a>
-    @dd($card)
 </x-layout>
