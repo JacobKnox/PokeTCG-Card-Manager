@@ -14,7 +14,17 @@
             <a href="/cards/pagesize=50&pagenum=1" class="nav_link"><button class="nav_button">Cards</button></a>
             <a href="/collections" class="nav_link"><button class="nav_button">Collections</button></a>
             <a href="/decks" class="nav_link"><button class="nav_button">Decks</button></a>
-            <a href="/registerlogin" class="nav_link"><button class="nav_button">Sign Up / Login</button></a>
+            <a href="/register" class="nav_link"><button class="nav_button">Sign Up</button></a>
+            <div id="login">
+                <h1 id="loginHeader">Login</h1>
+                <form id="loginForm" method="POST" target="/login">
+                    <label for="username">Username: </label>
+                    <input name="username" type="text">
+                    <label for="password">Password: </label>
+                    <input type="password">
+                    <input type="submit" value="Login" id="loginSubmit">
+                </form>
+            </div>
         </nav>
         <main id="main">
             {{ $slot }}
