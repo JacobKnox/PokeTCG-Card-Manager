@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Pokemon\Pokemon;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 
@@ -17,15 +16,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
     return view('index');
 });
 
-Route::get('/collections', function(){
+Route::get('/collections', function(Request $request){
     return view('collections');
 });
 
-Route::get('/decks', function(){
+Route::get('/decks', function(Request $request){
     return view('decks');
 });
 
@@ -39,7 +38,7 @@ Route::get('/set/{id}', function($id){
     return view('setpage', ['set' => $set]);
 });
 
-Route::get('/cards/pagesize={size}&pagenum={num}', function($size, $num){
+Route::get('/cards/pagesize={size}&pagenum={num}', function(Request $request, $size, $num){
     return view('cards', ['size' => intval($size), 'num' => intval($num)]);
 });
 
@@ -48,13 +47,12 @@ Route::get('/logout', function(Request $request){
 });
 
 Route::get('/register', function(Request $request){
+    if($request->has('username')){
+        return UserController::register($request);
+    }
     return view('register');
 });
 
-Route::post('/register', function(Request $request){
-    return UserController::register($request);
-});
-
-Route::post('/login', function(Request $request){
+Route::get('/login', function(Request $request){
     return UserController::login($request);
 });

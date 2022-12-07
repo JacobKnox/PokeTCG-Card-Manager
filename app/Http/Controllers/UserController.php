@@ -20,9 +20,12 @@ class UserController extends Controller
             ]);
         }
         catch(\Exception $e){
-            return redirect('/register')->withInput([$e, $request->except('password')]);
+            $return = $request->except('password');
+            $message = Controller::parseErrorCode($e->getCode());
+            return redirect('/register')->withInput([$return]);
         }
-        return UserController::login($request);
+        UserController::login($request);
+        return redirect('/');
     }
 
 
@@ -38,13 +41,15 @@ class UserController extends Controller
             'username' => ['required'],
             'password' => ['required'],
         ]);
- 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return back();
+            return redirect('/');
         }
- 
-        return back()->withInput(['error' => 'The provided credentials do not match our records.', $request->all()]);
+
+        $return = $request->except('password');
+
+        return back()->withInput($return);
     }
 
     public static function logout(Request $request)

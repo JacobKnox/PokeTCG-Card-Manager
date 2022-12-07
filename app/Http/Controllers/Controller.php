@@ -10,4 +10,10 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public static function parseErrorCode(int $code){
+        if($code == 23000){
+            return "This user already exists.";
+        }
+    }
 }

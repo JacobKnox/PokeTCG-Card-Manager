@@ -1,3 +1,7 @@
+<?php
+    use Illuminate\Support\Facades\Auth;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,17 +18,26 @@
             <a href="/cards/pagesize=50&pagenum=1" class="nav_link"><button class="nav_button">Cards</button></a>
             <a href="/collections" class="nav_link"><button class="nav_button">Collections</button></a>
             <a href="/decks" class="nav_link"><button class="nav_button">Decks</button></a>
+            @if(Auth::check())
+            <p>Welcome {{ Auth::user()->username }}</p>
+            <a href="/logout" class="nav_link"><button class="nav_button">Logout</button></a>
+            @else
             <a href="/register" class="nav_link"><button class="nav_button">Sign Up</button></a>
             <div id="login">
+                @if(isset($error))
+                <p>{{ $error }}</p>
+                @endif
                 <h1 id="loginHeader">Login</h1>
-                <form id="loginForm" method="POST" target="/login">
+                <form id="loginForm" method="GET" action="/login">
+                    @csrf <!-- {{ csrf_field() }} -->
                     <label for="username">Username: </label>
-                    <input name="username" type="text">
+                    <input name="username" type="text" value="{{ isset($username) ? $username : '' }}">
                     <label for="password">Password: </label>
-                    <input type="password">
+                    <input name="password" type="password">
                     <input type="submit" value="Login" id="loginSubmit">
                 </form>
             </div>
+            @endif
         </nav>
         <main id="main">
             {{ $slot }}
