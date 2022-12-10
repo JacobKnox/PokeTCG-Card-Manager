@@ -16,30 +16,30 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function (Request $request) {
+Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/collections', function(Request $request){
+Route::get('/collections', function(){
     return view('collections');
 });
 
-Route::get('/decks', function(Request $request){
+Route::get('/decks', function(){
     return view('decks');
 });
 
-Route::get('/card/{id}', function($id){
+Route::get('/card/{id}', function(String $id){
     $card = Pokemon::Card()->find($id);
     return view('cardpage', ['card' => $card]);
 });
 
-Route::get('/set/{id}', function($id){
+Route::get('/set/{id}', function(String $id){
     $set = Pokemon::Set()->find($id);
     return view('setpage', ['set' => $set]);
 });
 
-Route::get('/cards/pagesize={size}&pagenum={num}', function(Request $request, $size, $num){
-    return view('cards', ['size' => intval($size), 'num' => intval($num)]);
+Route::get('/cards/pagesize={size}&pagenum={num}', function(int $size, int $num){
+    return view('cards', ['size' => $size, 'num' => $num]);
 });
 
 Route::get('/logout', function(Request $request){

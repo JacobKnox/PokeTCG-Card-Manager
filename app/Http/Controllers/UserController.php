@@ -20,9 +20,7 @@ class UserController extends Controller
             ]);
         }
         catch(\Exception $e){
-            $return = $request->except('password');
-            $message = Controller::parseErrorCode($e->getCode());
-            return redirect('/register')->withInput([$return]);
+            return redirect('/register')->withInput($request->except('password'));
         }
         UserController::login($request);
         return redirect('/');
@@ -47,9 +45,7 @@ class UserController extends Controller
             return redirect('/');
         }
 
-        $return = $request->except('password');
-
-        return back()->withInput($return);
+        return back()->withInput($request->except('password'));
     }
 
     public static function logout(Request $request)
