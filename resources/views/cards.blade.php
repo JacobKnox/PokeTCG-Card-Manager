@@ -5,6 +5,7 @@ Pokemon::Options(['verify' => true]);
 Pokemon::ApiKey(env("POKEMON_API_KEY"));
 $set = Pokemon::Set()->find('base1');
 $cards = Pokemon::Card()->page($num)->pageSize($size)->all();
+$count = 0;
 ?>
 
 <x-layout>
@@ -45,15 +46,21 @@ $cards = Pokemon::Card()->page($num)->pageSize($size)->all();
             <input type="text" name="name" id="name" class="filterName">
         </form>
     </div>
-    <div id="cardsDisplay">
+    <div class="container text-center" id="cardsDisplay">
         @foreach($cards as $card)
-        <x-card :card='$card'></x-card>
+            @if($count % 4 == 0)
+                <div class="row">
+            @elseif($count % 4 == 3)
+                </div>
+            @endif
+            <div class="col"><x-card :card='$card'></x-card></div>
+            <?php $count++; ?>
         @endforeach
         @if($num > 1)
-        <a href="/cards/pagesize={{ $size }}&pagenum={{ $num - 1 }}"><button>Back</button></a>
+            <a href="/cards/pagesize={{ $size }}&pagenum={{ $num - 1 }}"><button>Back</button></a>
         @endif
         @if($num < 15314/$size)
-        <a href="/cards/pagesize={{ $size }}&pagenum={{ $num + 1 }}"><button>Forward</button></a>
+            <a href="/cards/pagesize={{ $size }}&pagenum={{ $num + 1 }}"><button>Forward</button></a>
         @endif
     </div>
 </x-layout>

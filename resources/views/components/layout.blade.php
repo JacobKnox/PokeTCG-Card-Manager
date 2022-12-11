@@ -47,10 +47,10 @@
                 @endif
             </div> 
         </nav>
-        <main id="main">
+        <main class="m-0" id="main">
             {{ $slot }}
         </main>
-        <footer id="footer">
+        <footer class="m-0" id="footer">
             <p>PokeTCG Card Manager by Jacob Knox</p>
             <p>All data made available by the <a href="https://pokemontcg.io/">Pokémon TCG API</a></p>
             <p>This website is not produced, endorsed, or supported by, nor affiliated with, Nintendo, The Pokémon Company, Game Freak, and all other related affiliates.</p>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Pokemon\Pokemon;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -21,11 +22,21 @@ Route::get('/', function () {
 });
 
 Route::get('/collections', function(){
-    return view('collections');
+    if(Auth::check()){
+        return view('collections');
+    }
+    else{
+        return redirect('/')->withInput(['session_expired' => true]);
+    }
 });
 
 Route::get('/decks', function(){
-    return view('decks');
+    if(Auth::check()){
+        return view('decks');
+    }
+    else{
+        return redirect('/')->withInput(['session_expired' => true]);
+    }
 });
 
 Route::get('/card/{id}', function(String $id){

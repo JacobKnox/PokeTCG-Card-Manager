@@ -22,4 +22,7 @@
         <p>Full Changelog: <a href="https://github.com/JacobKnox/PokeTCG-Card-Manager/commits/v0.0.2-alpha">here</a>.</p>
         <p>You can track past and current development of the site on GitHub <a href="https://github.com/JacobKnox/PokeTCG-Card-Manager">here</a>.</p>
     </div>
+    @if(isset($session_expired))
+    <script>alert("You have been redirected to the home page, because your credentials expired. Please log back in.");</script>
+    @endif
 </x-layout>
