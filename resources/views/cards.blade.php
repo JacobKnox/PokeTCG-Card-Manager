@@ -1,10 +1,4 @@
 <?php
-# example code for getting a set
-use Pokemon\Pokemon;
-Pokemon::Options(['verify' => true]);
-Pokemon::ApiKey(env("POKEMON_API_KEY"));
-$set = Pokemon::Set()->find('base1');
-$cards = Pokemon::Card()->page($num)->pageSize($size)->all();
 $count = 0;
 ?>
 

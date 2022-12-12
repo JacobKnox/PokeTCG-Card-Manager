@@ -10,6 +10,10 @@ class UserController extends Controller
 {
     public static function register(Request $request)
     {
+        if(!$request->has('username')){
+            return view('register');
+        }
+        
         $input = $request->all();
 
         try{
@@ -26,13 +30,6 @@ class UserController extends Controller
         return redirect('/');
     }
 
-
-    /**
-     * Handle an authentication attempt.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public static function login(Request $request)
     {
         $credentials = $request->validate([
@@ -54,5 +51,23 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
+    }
+
+    public static function decks(){
+        if(Auth::check()){
+            return view('decks');
+        }
+        else{
+            return redirect('/')->withInput(['session_expired' => true]);
+        }
+    }
+
+    public static function collections(){
+        if(Auth::check()){
+            return view('collections');
+        }
+        else{
+            return redirect('/')->withInput(['session_expired' => true]);
+        }
     }
 }

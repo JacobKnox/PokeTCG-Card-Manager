@@ -2,7 +2,6 @@
     <a href="/decks" class="deckLink">
         <button class="deckButton">
             <?php
-            $deck->setCards(['pl1-3']);
             $cards = $deck->getCards();
             #dd($cards);
             ?>

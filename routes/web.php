@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use Pokemon\Pokemon;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\PokemonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,49 +19,18 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/collections', function(){
-    if(Auth::check()){
-        return view('collections');
-    }
-    else{
-        return redirect('/')->withInput(['session_expired' => true]);
-    }
-});
+Route::get('/collections', [UserController::class, 'collections']);
 
-Route::get('/decks', function(){
-    if(Auth::check()){
-        return view('decks');
-    }
-    else{
-        return redirect('/')->withInput(['session_expired' => true]);
-    }
-});
+Route::get('/decks', [UserController::class, 'decks']);
 
-Route::get('/card/{id}', function(String $id){
-    $card = Pokemon::Card()->find($id);
-    return view('cardpage', ['card' => $card]);
-});
+Route::get('/card/{id}', [PokemonController::class, 'card']);
 
-Route::get('/set/{id}', function(String $id){
-    $set = Pokemon::Set()->find($id);
-    return view('setpage', ['set' => $set]);
-});
+Route::get('/set/{id}', [PokemonController::class, 'set']);
 
-Route::get('/cards/pagesize={size}&pagenum={num}', function(int $size, int $num){
-    return view('cards', ['size' => $size, 'num' => $num]);
-});
+Route::get('/cards/pagesize={size}&pagenum={num}', [PokemonController::class, 'cards']);
 
-Route::get('/logout', function(Request $request){
-    return UserController::logout($request);
-});
+Route::get('/logout', [UserController::class, 'logout']);
 
-Route::get('/register', function(Request $request){
-    if($request->has('username')){
-        return UserController::register($request);
-    }
-    return view('register');
-});
+Route::get('/register', [UserController::class, 'register']);
 
-Route::get('/login', function(Request $request){
-    return UserController::login($request);
-});
+Route::get('/login', [UserController::class, 'login']);

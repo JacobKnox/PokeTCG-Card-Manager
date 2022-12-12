@@ -15,32 +15,50 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array<int, string, string>
      */
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'password'
     ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array<int, string>
+     * @var array<string, string>
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
     ];
 
     /**
      * The attributes that should be cast.
      *
-     * @var array<string, string>
+     * @var array<string, string, string>
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
     ];
+
+    public function setUsername(String $newUsername){
+        $this->username = $newUsername;
+    }
+
+    public function getUsername(){
+        return $this->username;
+    }
+
+    public function setEmail(String $newEmail){
+        $this->email = $newEmail;
+    }
+
+    public function getEmail(){
+        return $this->email;
+    }
 
     public function decks()
     {
