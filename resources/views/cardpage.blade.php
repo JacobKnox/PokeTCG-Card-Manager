@@ -11,8 +11,8 @@
     <p>{{ $card->getName() }}</p>
     <a href="/set/{{$card->getSet()->getId()}}">{{ $card->getSet()->getName() }}</a>
 
-    <x-newdeckmodal></x-newdeckmodal>
-    <x-confirmdeckmodal :card='$card'></x-confirmdeckmodal>
+    <x-modals.newdeck></x-modals.newdeck>
+    <x-modals.confirmdeck :card='$card'></x-modals.confirmdeck>
 </x-layout>
 
 <script>

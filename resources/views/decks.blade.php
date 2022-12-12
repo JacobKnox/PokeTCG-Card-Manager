@@ -2,7 +2,7 @@
     <div id="decksdisplay">
         @if(count($decks) > 0)
             @foreach($decks as $deck)
-                <x-deckpreview :deck="$deck"></x-deckpreview>
+                <x-previews.deck :deck="$deck"></x-previews.deck>
             @endforeach
         @else
             <p>You haven't added any decks yet.</p>

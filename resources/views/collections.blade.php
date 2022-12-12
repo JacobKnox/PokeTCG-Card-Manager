@@ -2,7 +2,7 @@
     <div id="collectionsdisplay">
         @if(count($collections) > 0)
             @foreach($collections as $collection)
-                <x-collectionpreview :collection="$collection"></x-collectionpreview>
+                <x-previews.collection :collection="$collection"></x-previews.collection>
             @endforeach
         @else
             <p>You haven't added any collections yet.</p>
