@@ -20,7 +20,12 @@
       </div>
       <div class="modal-body">
         <form action="">
-          
+          @csrf
+          <label for="name">Name:</label>
+          <input name="name" type="text" required>
+          <label for="description">Description:</label>
+          <input name="description" type="text" required>
+          <input type="submit" value="Create Deck">
         </form>
       </div>
       <div class="modal-footer">

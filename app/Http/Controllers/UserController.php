@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    public static function getUser(){
+        return Auth::user();
+    }
+
     public static function register(Request $request)
     {
         if(!$request->has('username')){
