@@ -12,7 +12,7 @@ class PokemonController extends Controller
 {
     public static function card($id)
     {
-        return view('cardpage', ['card' => Pokemon::Card()->find($id), 'decks' => UserController::getUser()->decks]);
+        return view('cardpage', ['card' => Pokemon::Card()->find($id), 'decks' => UserController::getUser()->decks, 'collections' => UserController::getUser()->collections]);
     }
 
     public static function cards($size, $num){

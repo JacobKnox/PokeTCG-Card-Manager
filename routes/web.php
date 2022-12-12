@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PokemonController;
 use App\Http\Controllers\DeckController;
+use App\Http\Controllers\CollectionController;
 
 Route::view('/', 'index');
 
@@ -25,4 +26,8 @@ Route::get('/cards/pagesize={size}&pagenum={num}', [PokemonController::class, 'c
 
 Route::get('/newdeck', [DeckController::class, 'newDeck']);
 
-Route::get('/addcard', [DeckController::class, 'addCard']);
+Route::get('/addcard/to=deck', [DeckController::class, 'addCard']);
+
+Route::get('/newcollection', [CollectionController::class, 'newCollection']);
+
+Route::get('/addcard/to=collection', [CollectionController::class, 'addCard']);

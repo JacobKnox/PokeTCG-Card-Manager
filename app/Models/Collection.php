@@ -4,26 +4,35 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Pokemon\Models\Card;
+use Pokemon\Pokemon;
 use Illuminate\Support\Facades\DB;
 
 class Collection extends Model
 {
     use HasFactory;
 
-    public array $cards;
-
-    public function add_card(String $card_id){
-        array_push($cards, $card_id);
-        DB::table('collectionrelationships')->insert(
-            ['collection_id' => $this->id,
-            'card_id' => $card_id
-        ]);
+    public function addCards(?array $card_ids){
+        if($card_ids == null){
+            return;
+        }
+        foreach($card_ids as $id){
+            DB::table('collectionrelationships')->insert(
+                ['collection_id' => $this->id,
+                'card_id' => $id
+            ]);
+        }
+        $this->num_cards = $this->num_cards + count($card_ids);
     }
 
-    public function cards()
+    public function getCards()
     {
-        return $this->cards;
+        $cards = DB::table('collectionrelationships')->select('card_id')->where('collection_id', $this->id)->get();
+        $return = collect();
+        foreach($cards as $id){
+            $return->add(Pokemon::Card()->find($id->card_id));
+        }
+        $this->num_cards = count($return);
+        return $return;
     }
 
     public function owner()

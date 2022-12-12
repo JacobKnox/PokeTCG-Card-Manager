@@ -12,6 +12,18 @@ class CollectionController extends Controller
         DB::table('collectionrelationships')->where('collection_id', $id)->delete();
     }
 
+    public static function addCard(Request $request, $collectionid = null, $cardid = null){
+        if($collectionid == null || $cardid == null){
+            $input = $request->all();
+            $collectionid = $input['collectionid'];
+            $cardid = $input['cardid'];
+        }
+        $collection = Collection::where('id', intval($collectionid))->first();
+        $collection->addCards([$cardid]);
+
+        return back();
+    }
+
     public static function newCollection(Request $request){
         $input = $request->all();
 
@@ -21,5 +33,7 @@ class CollectionController extends Controller
         $collection->num_cards = 0;
         $collection->user_id = UserController::getUser()->id;
         $collection->save();
+
+        return back();
     }
 }
