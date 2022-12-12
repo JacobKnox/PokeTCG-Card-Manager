@@ -1,8 +1,3 @@
-<?php
-use App\Models\Collection;
-$collections = Collection::all();
-?>
-
 <x-layout>
     <div id="collectionsdisplay">
         @if(count($collections) > 0)

@@ -13,7 +13,7 @@ class UserController extends Controller
         if(!$request->has('username')){
             return view('register');
         }
-        
+
         $input = $request->all();
 
         try{
@@ -55,7 +55,7 @@ class UserController extends Controller
 
     public static function decks(){
         if(Auth::check()){
-            return view('decks');
+            return view('decks', ['decks' => Auth::user()->decks]);
         }
         else{
             return redirect('/')->withInput(['session_expired' => true]);
@@ -64,7 +64,7 @@ class UserController extends Controller
 
     public static function collections(){
         if(Auth::check()){
-            return view('collections');
+            return view('collections', ['collections' => Auth::user()->collections]);
         }
         else{
             return redirect('/')->withInput(['session_expired' => true]);

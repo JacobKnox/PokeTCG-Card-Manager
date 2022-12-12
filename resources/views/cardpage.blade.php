@@ -1,32 +1,27 @@
 <x-layout>
     <img src="{{ $card->getImages()->getLarge() }}" alt="">
-    <form action="">
-        
-    </form>
-    <select name="membership" id="membership">
+
+    <select name="decks" id="decks">
         <option value="instruction" selected disabled>Add to Deck</option>
-        <button type="button" data-toggle="modal" data-target="#exampleModal"><option value="new">New Deck</option></button>
+        <option value="new">New Deck</option>
     </select>
     <p>{{ $card->getName() }}</p>
     <a href="/set/{{$card->getSet()->getId()}}">{{ $card->getSet()->getName() }}</a>
 
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deckModal" tabindex="-1" role="dialog" aria-labelledby="deckModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="deckModalLabel">New Deck</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <form action="">
+          
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -36,3 +31,14 @@
   </div>
 </div>
 </x-layout>
+
+<script>
+  $(document).ready(function(){ //Make script DOM ready
+    $('#decks').change(function() { //jQuery Change Function
+        var opval = $(this).val(); //Get value from select element
+        if(opval=="new"){ //Compare it and if true
+            $('#deckModal').modal("show"); //Open Modal
+        }
+    });
+  });
+</script>

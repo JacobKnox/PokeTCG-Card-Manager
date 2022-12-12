@@ -1,8 +1,3 @@
-<?php
-use App\Models\Deck;
-$decks = Deck::all();
-?>
-
 <x-layout>
     <div id="decksdisplay">
         @if(count($decks) > 0)
