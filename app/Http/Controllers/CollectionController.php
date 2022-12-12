@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use App\Models\Collection;
 
 class CollectionController extends Controller
@@ -11,10 +12,12 @@ class CollectionController extends Controller
         DB::table('collectionrelationships')->where('collection_id', $id)->delete();
     }
 
-    public static function newCollection($name, $description){
+    public static function newCollection(Request $request){
+        $input = $request->all();
+
         $collection = new Collection();
-        $collection->name = $name;
-        $collection->description = $description;
+        $collection->name = $input['name'];
+        $collection->description = $input['description'];
         $collection->num_cards = 0;
         $collection->user_id = UserController::getUser()->id;
         $collection->save();

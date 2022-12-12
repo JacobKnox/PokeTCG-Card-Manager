@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PokemonController;
+use App\Http\Controllers\DeckController;
 
 Route::view('/', 'index');
 
@@ -21,3 +22,7 @@ Route::get('/card/{id}', [PokemonController::class, 'card']);
 Route::get('/set/{id}', [PokemonController::class, 'set']);
 
 Route::get('/cards/pagesize={size}&pagenum={num}', [PokemonController::class, 'cards']);
+
+Route::get('/newdeck', [DeckController::class, 'newDeck']);
+
+Route::get('/addcard', [DeckController::class, 'addCard']);

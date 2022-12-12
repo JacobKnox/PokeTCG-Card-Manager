@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Pokemon\Pokemon;
+use App\Http\Controllers\UserController;
 
 Pokemon::Options(['verify' => true]);
 Pokemon::ApiKey(env("POKEMON_API_KEY"));
@@ -11,7 +12,7 @@ class PokemonController extends Controller
 {
     public static function card($id)
     {
-        return view('cardpage', ['card' => Pokemon::Card()->find($id)]);
+        return view('cardpage', ['card' => Pokemon::Card()->find($id), 'decks' => UserController::getUser()->decks]);
     }
 
     public static function cards($size, $num){
