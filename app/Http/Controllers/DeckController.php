@@ -12,7 +12,12 @@ class DeckController extends Controller
         DB::table('deckrelationships')->where('deck_id', $id)->delete();
     }
 
-    public static function addCard($deckid, $cardid){
+    public static function addCard(Request $request, $deckid = null, $cardid = null){
+        if($deckid == null || $cardid == null){
+            $input = $request->all();
+            $deckid = $input['deckid'];
+            $cardid = $input['cardid'];
+        }
         $deck = Deck::where('id', intval($deckid))->first();
         $deck->addCards([$cardid]);
 

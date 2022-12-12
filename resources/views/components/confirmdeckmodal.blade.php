@@ -1,6 +1,5 @@
 @props([
-    'deckid',
-    'card'
+    'card',
 ])
 
 <div class="modal fade" id="confirmDeckModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeckModalLabel" aria-hidden="true">
@@ -16,9 +15,9 @@
         Please confirm that you would like to add this card to the selected deck.
         <form method="GET" action="/addcard">
             <label for="deckid">Deck ID:</label>
-            <input type="text" value="{{ $deckid }}">
+            <input id="deckid" name="deckid" type="text">
             <label for="cardid">Card ID:</label>
-            <input type="text" value="{{ $card->getId() }}">
+            <input name="cardid" type="text" value="{{$card->getId()}}">
             <input type="submit" value="Confirm">
         </form>
       </div>

@@ -1,8 +1,8 @@
-<x-layout>
+<x-layout id="layout">
     <img src="{{ $card->getImages()->getLarge() }}" alt="">
 
     <select name="decks" id="decks">
-        <option value="instruction" selected disabled>Add to Deck</option>
+        <option id="deckInstruction" value="instruction" selected disabled>Add to Deck</option>
         @foreach($decks as $deck)
         <option value="{{ $deck->id }}">{{ $deck->name }}</option>
         @endforeach
@@ -12,7 +12,7 @@
     <a href="/set/{{$card->getSet()->getId()}}">{{ $card->getSet()->getName() }}</a>
 
     <x-newdeckmodal></x-newdeckmodal>
-    <x-confirmdeckmodal id="confirm" :card="{{ $card }}"></x-confirmdeckmodal>
+    <x-confirmdeckmodal :card='$card'></x-confirmdeckmodal>
 </x-layout>
 
 <script>
@@ -23,9 +23,11 @@
           $('#deckModal').modal("show"); //Open Modal
         }
         else{
-          $('#confirm').attr("deckid", opval);
+          $('#deckid').val(opval);
           $('#confirmDeckModal').modal("show");
         }
+        $(this).prop("selected", false);
+        $('#deckInstruction').prop("selected", true);
     });
   });
 </script>
