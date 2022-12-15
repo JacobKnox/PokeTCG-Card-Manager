@@ -28,6 +28,10 @@ Route::get('/newdeck', [DeckController::class, 'newDeck']);
 
 Route::get('/addcard/to=deck', [DeckController::class, 'addCard']);
 
+Route::get('/deck/{id}', [DeckController::class, 'show']);
+
 Route::get('/newcollection', [CollectionController::class, 'newCollection']);
 
 Route::get('/addcard/to=collection', [CollectionController::class, 'addCard']);
+
+Route::get('/collection/{id}', [CollectionController::class, 'show']);

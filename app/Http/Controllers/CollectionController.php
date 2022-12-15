@@ -12,6 +12,11 @@ class CollectionController extends Controller
         DB::table('collectionrelationships')->where('collection_id', $id)->delete();
     }
 
+    public static function show($id){
+        $collection = Collection::where('id', intval($id))->first();
+        return view('collection', ['collection' => $collection]);
+    }
+
     public static function addCard(Request $request, $collectionid = null, $cardid = null){
         if($collectionid == null || $cardid == null){
             $input = $request->all();
