@@ -12,7 +12,7 @@ CHANGELOG.md export-ignore
 
 artisan linguist-vendored
 tests/** linguist-vendored
-public/** linguist-vendored
+public/index.php linguist-vendored
 lang/** linguist-vendored
 config/** linguist-vendored
 bootstrap/** linguist-vendored
