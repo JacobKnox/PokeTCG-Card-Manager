@@ -17,6 +17,9 @@
       <option value="new">New Collection</option>
     </select>
     <p>{{ $card->getName() }}</p>
+    @foreach($card->getTypes() as $type)
+      <img src="{{ asset('images/types/'.strtolower($type).'.png') }}" alt="{{ $type }}">
+    @endforeach
     <a href="/set/{{$card->getSet()->getId()}}">{{ $card->getSet()->getName() }}</a>
 
     <x-modals.new type='deck'></x-modals.new>
