@@ -4,74 +4,98 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class UserController extends Controller
 {
-    public static function getUser(){
-        return Auth::user();
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
     }
 
-    public static function register(Request $request)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        if(!$request->has('username')){
-            return view('register');
-        }
-
-        $input = $request->all();
-
-        try{
-            DB::table('users')->insert(
-                ['email' => $input['email'],
-                'username' => $input['username'],
-                'password' => bcrypt($input['password'])
-            ]);
-        }
-        catch(\Exception $e){
-            return redirect('/register')->withInput($request->except('password'));
-        }
-        UserController::login($request);
-        return redirect('/');
+        // Returns the register.blade.php view
+        return view('register');
     }
 
-    public static function login(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        $credentials = $request->validate([
-            'username' => ['required'],
-            'password' => ['required'],
+        $validated = $request->validate([
+            'email' => ['bail', 'required', 'email', 'unique:users'],
+            'username' => ['bail', 'required', 'unique:users'],
+            'password' => ['bail', 'required', 'different:username', 'different:email'],
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect('/');
-        }
+        User::create([
+            'email' => $validated['email'],
+            'username' => $validated['username'],
+            'password' => bcrypt($validated['password']),
+        ]);
 
-        return back()->withInput($request->except('password'));
-    }
+        UserController::login($request);
 
-    public static function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
         return redirect('/');
     }
 
-    public static function decks(){
-        if(Auth::check()){
-            return view('decks', ['decks' => Auth::user()->decks]);
-        }
-        else{
-            return redirect('/')->withInput(['session_expired' => true]);
-        }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
-    public static function collections(){
-        if(Auth::check()){
-            return view('collections', ['collections' => Auth::user()->collections]);
-        }
-        else{
-            return redirect('/')->withInput(['session_expired' => true]);
-        }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

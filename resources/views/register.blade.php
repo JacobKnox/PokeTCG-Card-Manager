@@ -1,11 +1,17 @@
 <x-layout>
     <div class="flex">
         <div id="signup">
-            @if(isset($error))
-                <p>{{ $error }}</p>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
             <h1 id="signupHeader">Sign Up</h1>
-            <form id="signupForm" method="GET" action="/register">
+            <form id="signupForm" method="POST" action="/users">
                 @csrf <!-- {{ csrf_field() }} -->
                 <label for="email">Email: </label>
                 <input name="email" type="text" :value="{{ isset($email) ? $email : '' }}" required>

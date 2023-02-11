@@ -2,36 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\PokemonController;
-use App\Http\Controllers\DeckController;
-use App\Http\Controllers\CollectionController;
 
-Route::view('/', 'index');
+Route::get('register', [UserController::class, 'create']);
 
-Route::get('/logout', [UserController::class, 'logout']);
+Route::resource('users', UserController::class)->except([
+    'create'
+]);
 
-Route::get('/register', [UserController::class, 'register']);
 
-Route::get('/login', [UserController::class, 'login']);
-
-Route::get('/collections', [UserController::class, 'collections']);
-
-Route::get('/decks', [UserController::class, 'decks']);
-
-Route::get('/card/{id}', [PokemonController::class, 'card']);
-
-Route::get('/set/{id}', [PokemonController::class, 'set']);
-
-Route::get('/cards/pagesize={size}&pagenum={num}', [PokemonController::class, 'cards']);
-
-Route::get('/newdeck', [DeckController::class, 'newDeck']);
-
-Route::get('/addcard/to=deck', [DeckController::class, 'addCard']);
-
-Route::get('/deck/{id}', [DeckController::class, 'show']);
-
-Route::get('/newcollection', [CollectionController::class, 'newCollection']);
-
-Route::get('/addcard/to=collection', [CollectionController::class, 'addCard']);
-
-Route::get('/collection/{id}', [CollectionController::class, 'show']);
+#Route::resource('user', UserController::class, array('names' => array('create' => 'user.register')));
