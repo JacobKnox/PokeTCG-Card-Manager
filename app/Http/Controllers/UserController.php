@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\User;
 use App\Http\Controllers\AdminController;
 
@@ -25,8 +26,9 @@ class UserController extends Controller
 
         // Attempt the authentication with the credentials
         if (Auth::attempt($credentials)) {
-            // Regenerate the session and redirect the user to the index page
+            // Regenerate the session
             $request->session()->regenerate();
+            // Redirect the user to the index page
             return redirect('/');
         }
 
@@ -45,17 +47,32 @@ class UserController extends Controller
     }
 
     /**
+     * Logs the user out.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        // Log the user out
+        Auth::logout();
+        // Invalidate the current session
+        $request->session()->invalidate();
+        // Regenerate their token
+        $request->session()->regenerateToken();
+        // Redirect them to the index page
+        return redirect('/');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // Get all of the users
-        $users = User::all();
-
         // Returns the users.blade.php view with all of the users
-        return view('users', ['users' => $users]);
+        return view('users', ['users' => User::all()]);
     }
 
     /**
@@ -106,8 +123,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        // Returns the user.blade.php view with the User model associated with $id
-        return view('user', ['user' => User::findOrFail($id)]);
+        // Attemps to take the user to the user.blade.php view with the User model associated with $id
+        try{
+            return view('user', ['user' => User::findOrFail($id)]);
+        }
+        // If there is no User model with the id, then redirect them to the users index page with an error message
+        catch(ModelNotFoundException $e){
+            return redirect('users')->with('message', 'No user exists with that ID.');
+        }
     }
 
     /**
@@ -118,8 +141,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        // Gets the User associated with $id
-        $user = User::findOrFail($id);
+        // Attempts to find the User associated with $id
+        try{
+            $user = User::findOrFail($id);
+        }
+        // If there is no user with that id, redirect them to the users index page with an error message
+        catch(ModelNotFoundException $e){
+            return redirect('users')->with('message', 'No user exists with that ID.');
+        }
 
         // If the currently authenticated user is the user
         if(Auth::user() == $user){
@@ -140,8 +169,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Gets the User associated with $id
-        $user = User::findOrFail($id);
+        // Attempts to find the User associated with $id
+        try{
+            $user = User::findOrFail($id);
+        }
+        // If there is no user with that id, redirect them to the users index page with an error message
+        catch(ModelNotFoundException $e){
+            return redirect('users')->with('message', 'No user exists with that ID.');
+        }
 
         // If the user is the user to be edited or if the admin has overrode it
         if($user == Auth::user() || AdminController::authenticate($request->validate(['overridepassword']))){
@@ -165,18 +200,24 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        // Get the User associated with $id
-        $user = User::findOrFail($id);
+        // Attempts to find the User associated with $id
+        try{
+            $user = User::findOrFail($id);
+        }
+        // If there is no user with that id, redirect them to the users index page with an error message
+        catch(ModelNotFoundException $e){
+            return redirect('users')->with('message', 'No user exists with that ID.');
+        }
 
         // If the user is the currently authenticated user
         if($user == Auth::user()){
             // Delete the user
             $user->delete();
             // Redirect them to the users index page
-            return UserController::index();
+            return redirect('users')->with('message', 'User successfully deleted.');
         }
 
         // Otherwise, take them to the user's page
-        return UserController::show($id);
+        return redirect('users/'.$id)->with('message', 'User could not be deleted.');
     }
 }

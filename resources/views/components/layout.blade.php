@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Auth;
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,10 +22,12 @@
                 <div class="navbar-nav mr-auto">  
                     <a href="/" class="nav-item nav-link"><button class="nav_button">Home</button></a>
                     <a href="/cards/pagesize=50&pagenum=1" class="nav-item nav-link"><button class="nav_button">Cards</button></a>
-                    <a href="/collections" class="nav-item nav-link"><button class="nav_button">Collections</button></a>
-                    <a href="/decks" class="nav-item nav-link"><button class="nav_button">Decks</button></a>
-                    <p class="nav-item">Welcome, !</p>
-                    <a href="/logout" class="nav-item nav-link"><button class="nav_button">Logout</button></a>
+                    @if(Auth::check())
+                        <a href="/collections" class="nav-item nav-link"><button class="nav_button">Collections</button></a>
+                        <a href="/decks" class="nav-item nav-link"><button class="nav_button">Decks</button></a>
+                        <p class="nav-item">Welcome, {{ Auth::user()->username }}!</p>
+                        <a href="/logout" class="nav-item nav-link"><button class="nav_button">Logout</button></a>
+                    @else
                     <a href="/register" class="nav-item nav-link"><button class="nav_button">Sign Up</button></a>
                 </div>
                 <div id="login">
@@ -29,15 +35,16 @@
                     <p>{{ $error }}</p>
                     @endif
                     <h1 id="loginHeader">Login</h1>
-                    <form class="form-inline my-2 my-lg-0" id="loginForm" method="GET" action="/login">
+                    <form class="form-inline my-2 my-lg-0" id="loginForm" method="POST" action="login">
                         @csrf <!-- {{ csrf_field() }} -->
                         <label for="username">Username: </label>
-                        <input name="username" type="text" value="{{ isset($username) ? $username : '' }}">
+                        <input name="username" type="text" value="{{ old('username') }}">
                         <label for="password">Password: </label>
                         <input name="password" type="password">
                         <input type="submit" value="Login" id="loginSubmit">
                     </form>
                 </div>
+                @endif
             </div> 
         </nav>
         <main class="m-0" id="main">
