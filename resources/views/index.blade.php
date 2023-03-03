@@ -1,14 +1,14 @@
 <x-layout>
-    <div id="welcome_banner">
+    <div class="block" id="welcome_banner">
         <h1 id="banner_header">Welcome to PokéTCG Card Manager!</h1>
     </div>
-    <div id="about_site">
+    <div class="block" id="about_site">
         <h2>About the Site</h2>
         <p>PokéTCG Card Manager is a website designed with the average Pokémon Trading Card Game (TCG) enthustiast and collector in mind. It provides searchable, up-to-date information about cards and sets provided by the <a href="https://pokemontcg.io/">Pokémon TCG API</a>, the ability to create and manage collections and decks, and other helpful to be determined features.</p>
         <h3>How do I use the site?</h3>
         <p>TEMP TEXT: Insert brief information about each feature (section will be updated and flushed out upon feature development), how to create and manage an account, etc. Link to a dedicated FAQ page??</p>
     </div>
-    <div id="development">
+    <div class="block" id="development">
         <h2>Site Development</h2>
         <h3>The Developer</h3>
         <p>Hello, my name is Jacob Knox, and I created PokéTCG Card Manager for a couple of reasons. First, I am an enthusiast of collecting Pokémon cards myself and have always been interested in developing a website and/or app for this purpose (inspired by the multitude that already exist). Second, this essentially serves as my capstone project for my web development concentration at Florida Southern College.</p>
